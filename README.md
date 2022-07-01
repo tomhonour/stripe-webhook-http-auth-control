@@ -12,7 +12,8 @@
 - (for local testing) stripe (stripe-cli)
 
 ## Installation and local development
-```apt install apache2-utils at fcgiwrap autoconf automake libtool gettext texinfo libgnutls28-dev nginx python3-pip
+```
+apt install apache2-utils at fcgiwrap autoconf automake libtool gettext texinfo libgnutls28-dev nginx python3-pip
 
 python3 -m pip install --upgrade pip
 python3 -m pip install stripe
