@@ -1,0 +1,28 @@
+server {
+	listen 80 ;
+	listen [::]:80 ;
+	server_name filmsbytom.com ;
+	root /var/www/filmsbytom ;
+	index index.html index.htm index.nginx-debian.html ;
+	location / {
+		try_files $uri $uri/ =404 ;
+	}
+	location /shop {
+		alias /var/www/shopfront ;
+	}
+	location /shopfiles {
+		alias /var/www/shopfiles ;
+		auth_basic "customer site" ;
+		auth_basic_user_file /etc/nginx/.myusers ;
+	}
+	location /stripe {
+		include fastcgi_params ;
+		fastcgi_param SCRIPT_FILENAME /usr/local/bin/stripe.py ;
+		fastcgi_param QUERY_STRING $query_string ;
+		fastcgi_pass unix:/run/fcgiwrap.socket ;
+		limit_except POST {
+			deny all ;
+		}
+#	return 200 ;
+	}
+}

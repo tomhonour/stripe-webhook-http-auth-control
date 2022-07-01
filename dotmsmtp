@@ -1,0 +1,12 @@
+defaults
+auth	on
+tls	on
+tls_trust_file /etc/ssl/certs/ca-certificates.crt
+logfile	~/.msmtp.log
+
+account	posteo
+host	posteo.de
+port	587
+from	tom5@posteo.net
+user	tom5@posteo.net
+password	plain-text-password
