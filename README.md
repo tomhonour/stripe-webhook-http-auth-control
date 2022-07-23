@@ -1,7 +1,7 @@
-# stripe-webhook-http-auth-ctrl
+# stripe-webhook-http-authentication-control
 
 ## the logic
-1. a customer performs and action
+1. a customer performs an action
 2. stripe sends a POST request with a json body
 3. `webhook.py` handles the request, calls `customers.sh`, and then returns 200.
 4. `customers.sh` creates a username and password for the customer, places that information into http auth, and then e-mails that information to the customer. it also removes that customer from http auth after 3 days.
@@ -30,9 +30,9 @@ edit `/etc/nginx/sites-enabled/`x to include the following in your server block:
 ```
 location /webhook {
 		proxy_pass http://localhost:8000 ;
-#		limit_except POST {
-#			deny all ;
-#		}
+		limit_except POST {
+			deny all ;
+		}
 ```
 ### deploy
 since webhook.py is a flask 'app', wsgi should be used (probably by starting webhook.py with systemd). however for now, I have just executed the following command in tmux in the background. it's lazy but it works!
@@ -58,3 +58,8 @@ stripe listen --forward-to localhost:4242/webhook
 ```
 ### trigger a dummy event e.g.:
 `stripe trigger payment_intent.succeeded`
+
+## to do
+- `chmod 600 msmtprc` instructions
+- `stripe listen --format JSON
+echo 'x' | jq` instructions
