@@ -36,6 +36,8 @@ location /webhook {
 ```
 ### deploy
 since webhook.py is a flask 'app', wsgi should be used (probably by starting webhook.py with systemd). however for now, I have just executed the following command in tmux in the background. it's lazy but it works!
+put 'sk_test_...' and 'whsec_' into server.py
+put 'sk_test_...' into customers.sh
 ```
 python3 webhook.py
 ```
@@ -48,7 +50,7 @@ echo "deb https://packages.stripe.dev/stripe-cli-debian-local stable main" | tee
 apt update
 apt install stripe
 ```
-put 'sk_test_...' into server.py
+put 'sk_test_...' and 'whsec_' into server.py
 
 ### for running
 ```
